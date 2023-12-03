@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/knownasnaffy/tauri-release-test/compare/v1.1.0...v1.2.0) (2023-12-03)
+
+
+### Features
+
+* :sparkles: bump package.json version on new release ([cbb0572](https://github.com/knownasnaffy/tauri-release-test/commit/cbb0572161028cad62a8ef133bde2ff8829d7b63))
+
 # [1.1.0](https://github.com/knownasnaffy/tauri-release-test/compare/v1.0.1...v1.1.0) (2023-12-03)
 
 
