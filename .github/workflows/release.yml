@@ -105,4 +105,4 @@ jobs:
               if: ${{ needs.changes.outputs.isNewVersion == 'true' }}
               with:
                   name: my-artifact
-                  path: src-tauri/target/release/bundle/**/*
+                  path: src-tauri/target/release/bundle/{deb,nsis,msi,app,dmg,updater}/*
