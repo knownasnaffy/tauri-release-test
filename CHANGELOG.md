@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/knownasnaffy/tauri-release-test/compare/v1.2.1...v1.2.2) (2023-12-03)
+
+
+### Bug Fixes
+
+* :bug: remove release option from publish-tauri ([6103c54](https://github.com/knownasnaffy/tauri-release-test/commit/6103c54f3208029b7d73265a14a9acb87468890b))
+
 ## [1.2.1](https://github.com/knownasnaffy/tauri-release-test/compare/v1.2.0...v1.2.1) (2023-12-03)
 
 
