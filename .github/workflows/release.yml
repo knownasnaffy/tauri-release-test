@@ -41,6 +41,8 @@ jobs:
             newVersion: ${{ steps.filter.outputs.release-version }}
 
         steps:
+            - uses: actions/checkout@v3
+
             - uses: codfish/semantic-release-action@v3
               id: filter
               with:
