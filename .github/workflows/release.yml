@@ -11,7 +11,7 @@ jobs:
             - changes
         if: ${{ needs.changes.outputs.isNewVersion == 'true' }}
         name: Release
-        runs-on: macos-latest
+        runs-on: ubuntu-latest
 
         permissions:
             contents: write # to be able to publish a GitHub release
@@ -35,7 +35,7 @@ jobs:
                       ["@semantic-release/commit-analyzer", "@semantic-release/release-notes-generator", [ "@semantic-release/github", { "assets": "src-tauri/target/release/bundle/**/*" } ], "@semantic-release/npm", "@semantic-release/changelog", [ "@semantic-release/git", { "assets": ["CHANGELOG.md", "package.json", "package-lock.json"] } ] ]
 
     changes:
-        runs-on: macos-latest
+        runs-on: ubuntu-latest
         outputs:
             isNewVersion: ${{ steps.filter.outputs.new-release-published }}
             newVersion: ${{ steps.filter.outputs.release-version }}
