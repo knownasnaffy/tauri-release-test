@@ -104,5 +104,5 @@ jobs:
             - uses: actions/upload-artifact@v3
               if: ${{ needs.changes.outputs.isNewVersion == 'true' }}
               with:
-                  name: my-artifact
-                  path: src-tauri/target/release/bundle/{deb,nsis,msi,app,dmg,updater}/*
+                  name: release-${{ needs.changes.outputs.newVersion }}-artifacts
+                  path: src-tauri/target/release/bundle/{deb,nsis,msi,app,dmg,updater}/**/*
