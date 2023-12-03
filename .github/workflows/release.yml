@@ -31,7 +31,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   plugins: |
-                      ["@semantic-release/commit-analyzer", "@semantic-release/release-notes-generator", [ "@semantic-release/github", { "assets": "release-artifacts/**/*.{msi,exe,AppImage,deb,dmg,app}" } ], "@semantic-release/changelog", [ "@semantic-release/git", { "assets": ["CHANGELOG.md"], "message": "chore(release): publish ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}" } ] ]
+                      ["@semantic-release/commit-analyzer", "@semantic-release/release-notes-generator", [ "@semantic-release/github", { "assets": "release-artifacts/**/*" } ], "@semantic-release/changelog", [ "@semantic-release/git", { "assets": ["CHANGELOG.md"], "message": "chore(release): publish ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}" } ] ]
                   additional-packages: |
                       ["@semantic-release/git"]
 
@@ -109,9 +109,8 @@ jobs:
               with:
                   name: release-${{ needs.changes.outputs.newVersion }}-${{ matrix.platform }}-artifacts
                   path: |
-                      src-tauri/target/release/bundle/nsis/**/*
-                      src-tauri/target/release/bundle/deb/**/*
-                      src-tauri/target/release/bundle/msi/**/*
-                      src-tauri/target/release/bundle/appimage/**/*
-                      src-tauri/target/release/bundle/dmg/**/*
-                      src-tauri/target/release/bundle/macos/**/*
+                      src-tauri/target/release/bundle/nsis/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64_en-US.msi
+                      src-tauri/target/release/bundle/deb/tauri-release-test_${{needs.changes.outputs.newVersion}}_arm64.deb
+                      src-tauri/target/release/bundle/msi/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64-setup.exe
+                      src-tauri/target/release/bundle/appimage/tauri-release-test_${{needs.changes.outputs.newVersion}}_arm64.AppImage
+                      src-tauri/target/release/bundle/dmg/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64.dmg
