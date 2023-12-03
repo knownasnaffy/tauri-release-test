@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/knownasnaffy/tauri-release-test/compare/v1.2.0...v1.2.1) (2023-12-03)
+
+
+### Bug Fixes
+
+* :bug: add "@semantic-release/npm" ([0a36656](https://github.com/knownasnaffy/tauri-release-test/commit/0a36656e706f98e61773faaa1937a1d4905a2463))
+
 # [1.2.0](https://github.com/knownasnaffy/tauri-release-test/compare/v1.1.0...v1.2.0) (2023-12-03)
 
 
