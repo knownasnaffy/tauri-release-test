@@ -1,7 +1,7 @@
 {
   "name": "tauri-release-test",
   "private": true,
-  "version": "1.2.2",
+  "version": "1.2.5",
   "type": "module",
   "repository": "https://github.com/knownasnaffy/tauri-release-test",
   "scripts": {
