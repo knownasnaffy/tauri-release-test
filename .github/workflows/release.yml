@@ -31,7 +31,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   plugins: |
-                      ["@semantic-release/commit-analyzer", "@semantic-release/release-notes-generator", [ "@semantic-release/github", { "assets": "release-artifacts/**/*" } ], "@semantic-release/changelog", [ "@semantic-release/git", { "assets": ["CHANGELOG.md"], "message": "chore(release): publish ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}" } ] ]
+                      ["@semantic-release/commit-analyzer", "@semantic-release/release-notes-generator", [ "@semantic-release/github", { "assets": "release-artifacts/**/*.{msi,exe,AppImage,deb,dmg,app}" } ], "@semantic-release/changelog", [ "@semantic-release/git", { "assets": ["CHANGELOG.md"], "message": "chore(release): publish ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}" } ] ]
                   additional-packages: |
                       ["@semantic-release/git"]
 
@@ -108,4 +108,10 @@ jobs:
               if: ${{ needs.changes.outputs.isNewVersion == 'true' }}
               with:
                   name: release-${{ needs.changes.outputs.newVersion }}-${{ matrix.platform }}-artifacts
-                  path: src-tauri/target/release/bundle/**/{deb,nsis,msi,appimage,dmg,macos}/**/*.{msi,exe,AppImage,deb,dmg,app}
+                  path: |
+                      src-tauri/target/release/bundle/nsis/**/*
+                      src-tauri/target/release/bundle/deb/**/*
+                      src-tauri/target/release/bundle/msi/**/*
+                      src-tauri/target/release/bundle/appimage/**/*
+                      src-tauri/target/release/bundle/dmg/**/*
+                      src-tauri/target/release/bundle/macos/**/*
