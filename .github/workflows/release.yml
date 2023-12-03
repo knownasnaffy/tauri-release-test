@@ -24,15 +24,14 @@ jobs:
 
             - uses: actions/download-artifact@v3
               with:
-                  name: release-${{ needs.changes.outputs.newVersion }}-artifacts
-                  path: src-tauri/target/release/bundle
+                  path: release-artifacts/
 
             - uses: codfish/semantic-release-action@v3
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   plugins: |
-                      ["@semantic-release/commit-analyzer", "@semantic-release/release-notes-generator", [ "@semantic-release/github", { "assets": "src-tauri/target/release/bundle/**/*" } ], "@semantic-release/changelog", [ "@semantic-release/git", { "assets": ["CHANGELOG.md"], "message": "chore(release): publish ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}" } ] ]
+                      ["@semantic-release/commit-analyzer", "@semantic-release/release-notes-generator", [ "@semantic-release/github", { "assets": "release-artifacts/**/*" } ], "@semantic-release/changelog", [ "@semantic-release/git", { "assets": ["CHANGELOG.md"], "message": "chore(release): publish ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}" } ] ]
                   additional-packages: |
                       ["@semantic-release/git"]
 
@@ -108,5 +107,5 @@ jobs:
             - uses: actions/upload-artifact@v3
               if: ${{ needs.changes.outputs.isNewVersion == 'true' }}
               with:
-                  name: release-${{ needs.changes.outputs.newVersion }}-artifacts
-                  path: src-tauri/target/release/bundle/**/{deb,nsis,msi,app,dmg,updater}/**/*
+                  name: release-${{ needs.changes.outputs.newVersion }}-${{ matrix.platform }}-artifacts
+                  path: src-tauri/target/release/bundle/**/{deb,nsis,msi,appimage,dmg,macos}/**/*.{msi,exe,AppImage,deb,dmg,app}
