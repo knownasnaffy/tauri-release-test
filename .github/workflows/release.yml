@@ -50,6 +50,8 @@ jobs:
               with:
                   plugins: |
                       ["@semantic-release/commit-analyzer", "@semantic-release/npm", [ "@semantic-release/git", { "assets": ["package.json", "package-lock.json"], "message": "chore(release): bump version to ${nextRelease.version} [skip ci]" } ] ]
+                  additional-packages: |
+                      ["@semantic-release/git"]
 
     build:
         needs: changes
