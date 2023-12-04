@@ -31,7 +31,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   plugins: |
-                      ["@semantic-release/commit-analyzer", "@semantic-release/release-notes-generator", [ "@semantic-release/github", { "assets": ["src-tauri/target/release/bundle/**/*"] } ], "@semantic-release/changelog", [ "@semantic-release/git", { "assets": ["CHANGELOG.md"], "message": "chore(release): publish ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}" } ] ]
+                      ["@semantic-release/commit-analyzer", "@semantic-release/release-notes-generator", [ "@semantic-release/github", { "assets": ["release-artifacts/**/*"] } ], "@semantic-release/changelog", [ "@semantic-release/git", { "assets": ["CHANGELOG.md"], "message": "chore(release): publish ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}" } ] ]
                   additional-packages: |
                       ["@semantic-release/git"]
 
