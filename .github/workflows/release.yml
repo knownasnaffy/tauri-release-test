@@ -53,6 +53,7 @@ jobs:
                       ["@semantic-release/commit-analyzer", "@semantic-release/npm", [ "@semantic-release/git", { "assets": ["package.json", "package-lock.json"], "message": "chore(release): bump version to ${nextRelease.version} [skip ci]" } ] ]
                   additional-packages: |
                       ["@semantic-release/git"]
+                  dry-run: true
 
     build:
         needs: changes
@@ -117,14 +118,15 @@ jobs:
                       src-tauri/target/release/bundle/msi/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64-setup.exe
                       src-tauri/target/release/bundle/appimage/tauri-release-test_${{needs.changes.outputs.newVersion}}_arm64.AppImage
                       src-tauri/target/release/bundle/dmg/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64.dmg
+                  if-no-files-found: ignore
 
-    backup:
-        needs:
-            - changes
-            - build
-        runs-on: ubuntu-latest
-        if: ${{ needs.changes.outputs.isNewVersion == 'true' }} && ${{ needs.build.result == 'failure'}}
+    # backup:
+    #     needs:
+    #         - changes
+    #         - build
+    #     runs-on: ubuntu-latest
+    #     if: ${{ needs.changes.outputs.isNewVersion == 'true' }} && ${{ !(needs.build.result == 'success') }}
 
-        steps:
-            - name: Delete stale tag
-              run:  git tag -d v${{needs.changes.outputs.newVersion}}
+    #     steps:
+    #         - name: Delete stale tag
+    #           run: git tag -d v${{needs.changes.outputs.newVersion}}
