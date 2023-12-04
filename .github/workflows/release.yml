@@ -108,7 +108,7 @@ jobs:
               continue-on-error: true
 
             - uses: actions/upload-artifact@v3
-              if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix..platform == 'windows-latest' }}
+              if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'windows-latest' }}
               with:
                   name: release-${{ needs.changes.outputs.newVersion }}-${{ matrix.platform }}-artifacts
                   path: |
@@ -116,14 +116,14 @@ jobs:
                       src-tauri/target/release/bundle/msi/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64-setup.exe
                       
             - uses: actions/upload-artifact@v3
-              if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix..platform == 'macos-latest' }}
+              if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'macos-latest' }}
               with:
                   name: release-${{ needs.changes.outputs.newVersion }}-${{ matrix.platform }}-artifacts
                   path: |
                       src-tauri/target/release/bundle/dmg/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64.dmg
     
             - uses: actions/upload-artifact@v3
-              if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix..platform == 'ubuntu-20.04' }}
+              if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'ubuntu-20.04' }}
               with:
                   name: release-${{ needs.changes.outputs.newVersion }}-${{ matrix.platform }}-artifacts
                   path: |
