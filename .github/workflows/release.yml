@@ -93,6 +93,9 @@ jobs:
             - name: Install dependencies
               run: pnpm install
 
+            - name: Bump package.json version
+              run: npm set version='${{ needs.changes.outputs.newVersion }}'
+
             - name: install Rust stable
               uses: dtolnay/rust-toolchain@stable
 
@@ -114,3 +117,14 @@ jobs:
                       src-tauri/target/release/bundle/msi/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64-setup.exe
                       src-tauri/target/release/bundle/appimage/tauri-release-test_${{needs.changes.outputs.newVersion}}_arm64.AppImage
                       src-tauri/target/release/bundle/dmg/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64.dmg
+
+    backup:
+        needs:
+            - changes
+            - build
+        runs-on: ubuntu-latest
+        if: ${{ needs.changes.outputs.isNewVersion == 'true' }} && ${{ needs.build.result == 'failure'}}
+
+        steps:
+            - name: Delete stale tag
+              run:  git tag -d v${{needs.changes.outputs.newVersion}}
