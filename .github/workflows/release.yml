@@ -93,50 +93,45 @@ jobs:
             - name: Bump package.json version
               run: npm pkg set version='${{ needs.changes.outputs.newVersion }}'
 
-            - name: install Rust stable
+            - name: Install Rust stable
               uses: dtolnay/rust-toolchain@stable
 
-            - name: install dependencies (ubuntu only)
+            - name: Install dependencies (ubuntu only)
               if: matrix.platform == 'ubuntu-20.04'
               run: |
                   sudo apt-get update
                   sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
 
-            - uses: tauri-apps/tauri-action@v0
-
-            - run: cd src-tauri/target/release/bundle/deb && ls
-              continue-on-error: true
+            - name: Build app
+              uses: tauri-apps/tauri-action@v0
 
             - uses: actions/upload-artifact@v3
               if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'windows-latest' }}
               with:
-                  name: release-${{ needs.changes.outputs.newVersion }}-${{ matrix.platform }}-artifacts
-                  path: |
-                      src-tauri/target/release/bundle/nsis/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64_en-US.msi
-                      src-tauri/target/release/bundle/msi/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64-setup.exe
-                      
+                  name: release-${{ needs.changes.outputs.newVersion }}-windows-msi
+                  path: src-tauri/target/release/bundle/nsis/tauri-release-test_*_x64_en-US.msi
+            
+            - uses: actions/upload-artifact@v3
+              if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'windows-latest' }}
+              with:
+                  name: release-${{ needs.changes.outputs.newVersion }}-windows-nsis
+                  path: src-tauri/target/release/bundle/msi/tauri-release-test_*_x64-setup.exe
+            
             - uses: actions/upload-artifact@v3
               if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'macos-latest' }}
               with:
-                  name: release-${{ needs.changes.outputs.newVersion }}-${{ matrix.platform }}-artifacts
+                  name: release-${{ needs.changes.outputs.newVersion }}-macos-dmg
                   path: |
-                      src-tauri/target/release/bundle/dmg/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64.dmg
+                      src-tauri/target/release/bundle/dmg/tauri-release-test_*_x64.dmg
     
             - uses: actions/upload-artifact@v3
               if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'ubuntu-20.04' }}
               with:
-                  name: release-${{ needs.changes.outputs.newVersion }}-${{ matrix.platform }}-artifacts
-                  path: |
-                      src-tauri/target/release/bundle/deb/tauri-release-test_${{needs.changes.outputs.newVersion}}_arm64.deb
-                      src-tauri/target/release/bundle/appimage/tauri-release-test_${{needs.changes.outputs.newVersion}}_arm64.AppImage
+                  name: release-${{ needs.changes.outputs.newVersion }}-ubuntu-deb
+                  path: src-tauri/target/release/bundle/deb/tauri-release-test_*_arm64.deb
 
-    # backup:
-    #     needs:
-    #         - changes
-    #         - build
-    #     runs-on: ubuntu-latest
-    #     if: ${{ needs.changes.outputs.isNewVersion == 'true' }} && ${{ !(needs.build.result == 'success') }}
-
-    #     steps:
-    #         - name: Delete stale tag
-    #           run: git tag -d v${{needs.changes.outputs.newVersion}}
+            - uses: actions/upload-artifact@v3
+              if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'ubuntu-20.04' }}
+              with:
+                  name: release-${{ needs.changes.outputs.newVersion }}-ubuntu-appimage
+                  path: src-tauri/target/release/bundle/appimage/tauri-release-test_*_arm64.AppImage
