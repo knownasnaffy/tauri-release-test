@@ -31,7 +31,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   plugins: |
-                      ["@semantic-release/commit-analyzer", "@semantic-release/release-notes-generator", "@semantic-release/npm", [ "@semantic-release/github", { "assets": ["release-artifacts/**/*"] } ], "@semantic-release/changelog", [ "@semantic-release/git", { "assets": ["CHANGELOG.md", "package.json", "package-lock.json"], "message": "chore(release): publish ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}" } ] ]
+                      ["@semantic-release/commit-analyzer", "@semantic-release/release-notes-generator", "@semantic-release/npm", [ "@semantic-release/github", { "assets": ["release-artifacts/**"] } ], "@semantic-release/changelog", [ "@semantic-release/git", { "assets": ["CHANGELOG.md", "package.json", "package-lock.json"], "message": "chore(release): publish ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}" } ] ]
                   additional-packages: |
                       ["@semantic-release/git"]
 
@@ -109,13 +109,15 @@ jobs:
               if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'windows-latest' }}
               with:
                   name: release-${{ needs.changes.outputs.newVersion }}-windows-msi
-                  path: src-tauri/target/release/bundle/nsis/tauri-release-test_*_x64_en-US.msi
+                  path: |
+                      src-tauri/target/release/bundle/nsis/tauri-release-test_*_x64*.msi
             
             - uses: actions/upload-artifact@v3
               if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'windows-latest' }}
               with:
                   name: release-${{ needs.changes.outputs.newVersion }}-windows-nsis
-                  path: src-tauri/target/release/bundle/msi/tauri-release-test_*_x64-setup.exe
+                  path: |
+                      src-tauri/target/release/bundle/msi/tauri-release-test_*_x64*.exe
             
             - uses: actions/upload-artifact@v3
               if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'macos-latest' }}
@@ -128,10 +130,12 @@ jobs:
               if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'ubuntu-20.04' }}
               with:
                   name: release-${{ needs.changes.outputs.newVersion }}-ubuntu-deb
-                  path: src-tauri/target/release/bundle/deb/tauri-release-test_*_arm64.deb
+                  path: |
+                      src-tauri/target/release/bundle/deb/tauri-release-test_*_arm64.deb
 
             - uses: actions/upload-artifact@v3
               if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'ubuntu-20.04' }}
               with:
                   name: release-${{ needs.changes.outputs.newVersion }}-ubuntu-appimage
-                  path: src-tauri/target/release/bundle/appimage/tauri-release-test_*_arm64.AppImage
+                  path: |
+                      src-tauri/target/release/bundle/appimage/tauri-release-test_*_arm64.AppImage
