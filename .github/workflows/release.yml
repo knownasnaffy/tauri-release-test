@@ -108,22 +108,28 @@ jobs:
               continue-on-error: true
 
             - uses: actions/upload-artifact@v3
-              if: ${{ needs.changes.outputs.isNewVersion == 'true' }}
+              if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix..platform == 'windows-latest' }}
               with:
                   name: release-${{ needs.changes.outputs.newVersion }}-${{ matrix.platform }}-artifacts
                   path: |
-                      src-tauri/target/release/bundle/**/*
-                      !src-tauri/target/release/bundle/deb/tauri-release-test_${{needs.changes.outputs.newVersion}}/**/*
-                      !src-tauri/target/release/bundle/appimage/tauri-release-test.AppDir/**/*
-                      !src-tauri/target/release/bundle/appimage/build_appimage.sh
-                  if-no-files-found:
-                      ignore
+                      src-tauri/target/release/bundle/nsis/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64_en-US.msi
+                      src-tauri/target/release/bundle/msi/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64-setup.exe
+                      
+            - uses: actions/upload-artifact@v3
+              if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix..platform == 'macos-latest' }}
+              with:
+                  name: release-${{ needs.changes.outputs.newVersion }}-${{ matrix.platform }}-artifacts
+                  path: |
+                      src-tauri/target/release/bundle/dmg/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64.dmg
+    
+            - uses: actions/upload-artifact@v3
+              if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix..platform == 'ubuntu-20.04' }}
+              with:
+                  name: release-${{ needs.changes.outputs.newVersion }}-${{ matrix.platform }}-artifacts
+                  path: |
+                      src-tauri/target/release/bundle/deb/tauri-release-test_${{needs.changes.outputs.newVersion}}_arm64.deb
+                      src-tauri/target/release/bundle/appimage/tauri-release-test_${{needs.changes.outputs.newVersion}}_arm64.AppImage
 
-                      # src-tauri/target/release/bundle/nsis/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64_en-US.msi
-                      # src-tauri/target/release/bundle/deb/tauri-release-test_${{needs.changes.outputs.newVersion}}_arm64.deb
-                      # src-tauri/target/release/bundle/msi/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64-setup.exe
-                      # src-tauri/target/release/bundle/appimage/tauri-release-test_${{needs.changes.outputs.newVersion}}_arm64.AppImage
-                      # src-tauri/target/release/bundle/dmg/tauri-release-test_${{needs.changes.outputs.newVersion}}_x64.dmg
     # backup:
     #     needs:
     #         - changes
