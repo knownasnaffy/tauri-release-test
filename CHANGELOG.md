@@ -1,3 +1,12 @@
+## [1.4.5](https://github.com/knownasnaffy/tauri-release-test/compare/v1.4.4...v1.4.5) (2023-12-04)
+
+
+### Bug Fixes
+
+* update release.yml ([4297a3d](https://github.com/knownasnaffy/tauri-release-test/commit/4297a3dd5d7897d35897c101a65bed8833c54a1e))
+* update release.yml ([a8b2e1c](https://github.com/knownasnaffy/tauri-release-test/commit/a8b2e1c9f16c1225b55ebf3696ea87c94c7079cd))
+* update release.yml ([64f9eaa](https://github.com/knownasnaffy/tauri-release-test/commit/64f9eaa742600d1c4198ba6b091128284c2df107))
+
 ## [1.4.4](https://github.com/knownasnaffy/tauri-release-test/compare/v1.4.3...v1.4.4) (2023-12-04)
 
 
