@@ -91,7 +91,7 @@ jobs:
               run: pnpm install
 
             - name: Bump package.json version
-              run: npm set version='${{ needs.changes.outputs.newVersion }}'
+              run: npm pkg set version='${{ needs.changes.outputs.newVersion }}'
 
             - name: install Rust stable
               uses: dtolnay/rust-toolchain@stable
