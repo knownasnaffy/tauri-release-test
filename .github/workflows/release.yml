@@ -123,6 +123,13 @@ jobs:
                   name: release-${{ needs.changes.outputs.newVersion }}-macos-dmg
                   path: |
                       src-tauri/target/release/bundle/dmg/tauri-release-test_*_x64.dmg
+            
+            - uses: actions/upload-artifact@v3
+              if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'macos-latest' }}
+              with:
+                  name: release-${{ needs.changes.outputs.newVersion }}-macos-app
+                  path: |
+                      src-tauri/target/release/bundle/macos/tauri-release-test.app
 
             - uses: actions/upload-artifact@v3
               if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'ubuntu-20.04' }}
