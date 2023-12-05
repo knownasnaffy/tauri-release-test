@@ -46,7 +46,7 @@ jobs:
 
             - uses: codfish/semantic-release-action@v3
               id: filter
-              if: ${{ github.event_name == 'push }} && ${{ github.ref == 'refs/heads/main' }}
+              if: ${{ github.event_name == 'push && github.ref == 'refs/heads/main' }}
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
