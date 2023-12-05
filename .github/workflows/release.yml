@@ -129,7 +129,7 @@ jobs:
               with:
                   name: release-${{ needs.changes.outputs.newVersion }}-macos-app
                   path: |
-                      src-tauri/target/release/bundle/macos/tauri-release-test.app
+                      src-tauri/target/release/bundle/macos/tauri-release-test.app.tar.gz
 
             - uses: actions/upload-artifact@v3
               if: ${{ needs.changes.outputs.isNewVersion == 'true' && matrix.platform == 'ubuntu-20.04' }}
