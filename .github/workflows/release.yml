@@ -26,7 +26,7 @@ jobs:
 
             - uses: codfish/semantic-release-action@v3
               env:
-                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
               with:
                   extends: ../configs/release.json
                   additional-packages: |
@@ -45,7 +45,7 @@ jobs:
               id: filter
               if: github.event_name == 'push' && github.ref == 'refs/heads/main'
               env:
-                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
               with:
                   dry-run: true
 
