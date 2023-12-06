@@ -1,3 +1,16 @@
+# [1.7.0](https://github.com/knownasnaffy/tauri-release-test/compare/v1.6.0...v1.7.0) (2023-12-06)
+
+
+### Bug Fixes
+
+* :bug: ([42a1af3](https://github.com/knownasnaffy/tauri-release-test/commit/42a1af3a98f487aef85a9b0a5daed6b4635f7898))
+* :bug: ([2be75f4](https://github.com/knownasnaffy/tauri-release-test/commit/2be75f4eb3f06f426efebfc6df10b8c97241b2aa))
+
+
+### Features
+
+* :sparkles: ([489fd15](https://github.com/knownasnaffy/tauri-release-test/commit/489fd153f34e3a73f3c490f1d808875b43f8b7d5))
+
 # [1.6.0](https://github.com/knownasnaffy/tauri-release-test/compare/v1.5.3...v1.6.0) (2023-12-06)
 
 
