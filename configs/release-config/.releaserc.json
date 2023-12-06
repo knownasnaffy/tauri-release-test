@@ -8,10 +8,10 @@
 			[
 				"@semantic-release/github",
 				{
-					"assets": ["src-tauri/target/release/bundle/**/*"],
-					"draftRelease": true,
+					"assets": ["release-artifacts/**"],
+					"draftRelease": "true",
 					"releaseNameTemplate": "App v<%= nextRelease.version %>",
-					"releaseBodyTemplate": "<details>\n<summary>Release Notes</summary>\n\n<%= nextRelease.notes %>\n\n</details>"
+					"releaseBodyTemplate": "<details>\n<summary>Release Notes</summary><br/><%= nextRelease.notes %><br/></details>"
 				}
 			],
 			"@semantic-release/git"
