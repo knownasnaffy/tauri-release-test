@@ -28,7 +28,7 @@ jobs:
               env:
                   GH_TOKEN: ${{ secrets.GH_TOKEN }}
               with:
-                  extends: ../../configs/release-config
+                  extends: configs/release-config
                   additional-packages: |
                       ["@semantic-release/git"]
 
