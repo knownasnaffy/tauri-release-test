@@ -1,3 +1,22 @@
+# [1.6.0](https://github.com/knownasnaffy/tauri-release-test/compare/v1.5.3...v1.6.0) (2023-12-06)
+
+
+### Bug Fixes
+
+* :bug: ([1ff3c64](https://github.com/knownasnaffy/tauri-release-test/commit/1ff3c64872efb2140cb6c24340c45e384b7bee5f))
+* :bug: ([1c7bdd2](https://github.com/knownasnaffy/tauri-release-test/commit/1c7bdd2d9440bca15970e43ae14422ea25a53650))
+* :bug: ([d94d5d4](https://github.com/knownasnaffy/tauri-release-test/commit/d94d5d4f4d8c376baeea9e257a72fc9206c0eb52))
+* :bug: ([06e1566](https://github.com/knownasnaffy/tauri-release-test/commit/06e15667df1ca7b019b0010aa426dd05771fe633))
+* :bug: ([c8f39d5](https://github.com/knownasnaffy/tauri-release-test/commit/c8f39d5eed0a103077c1f18224f1124ed1edcfc7))
+* :bug: ([e90fd29](https://github.com/knownasnaffy/tauri-release-test/commit/e90fd290245178066a7214f89cf49d3e7d90a86f))
+* :bug: ([6de9478](https://github.com/knownasnaffy/tauri-release-test/commit/6de9478c6b7a5402258a65be4153e2f68c30647a))
+* :bug: ([18d1ad9](https://github.com/knownasnaffy/tauri-release-test/commit/18d1ad994e26cea46f71babd1ef8cfb1c0a0d244))
+
+
+### Features
+
+* :sparkles: ([8135bfd](https://github.com/knownasnaffy/tauri-release-test/commit/8135bfdc1f7c2b55f6d3922d27d147af05df02bf))
+
 ## [1.5.3](https://github.com/knownasnaffy/tauri-release-test/compare/v1.5.2...v1.5.3) (2023-12-05)
 
 
