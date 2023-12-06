@@ -28,7 +28,8 @@ jobs:
               env:
                   GH_TOKEN: ${{ secrets.GH_TOKEN }}
               with:
-                  extends: /home/runner/work/tauri-release-test/tauri-release-test/configs/release-config
+                  extends: |
+                      configs/release-config
                   additional-packages: |
                       ["@semantic-release/git"]
 
