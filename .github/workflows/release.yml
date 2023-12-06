@@ -107,6 +107,7 @@ jobs:
                   workspaces: './src-tauri -> target'
 
             - name: Bump package.json version
+              if: needs.changes.outputs.isNewVersion == 'true'
               run: npm pkg set version='${{ needs.changes.outputs.newVersion }}'
 
             - name: Build app
