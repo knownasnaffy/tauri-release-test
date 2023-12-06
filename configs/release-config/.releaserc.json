@@ -10,7 +10,7 @@
 				"assets": ["release-artifacts/**"],
 				"draftRelease": "true",
 				"releaseNameTemplate": "App v<%= nextRelease.version %>",
-				"releaseBodyTemplate": "<details>\n<summary>Release Notes</summary><br/><%= nextRelease.notes %><br/></details>"
+				"releaseBodyTemplate": "<details>\n<summary>Release Notes</summary>\n\n<%= nextRelease.notes %></details>"
 			}
 		],
 		"@semantic-release/git"
