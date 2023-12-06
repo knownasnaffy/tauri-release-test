@@ -30,8 +30,7 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                  plugins: |
-                      ["@semantic-release/commit-analyzer", "@semantic-release/release-notes-generator", [ "@semantic-release/github", { "assets": ["src-tauri/target/release/bundle/**/*"] } ], "@semantic-release/changelog", [ "@semantic-release/git", { "assets": ["CHANGELOG.md"], "message": "chore(release): publish ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}" } ] ]
+                  extends: .github/configs/release.json
                   additional-packages: |
                       ["@semantic-release/git"]
 
@@ -50,9 +49,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   plugins: |
-                      ["@semantic-release/commit-analyzer", "@semantic-release/npm", [ "@semantic-release/git", { "assets": ["package.json", "package-lock.json"], "message": "chore(release): bump version to ${nextRelease.version} [skip ci]" } ] ]
-                  additional-packages: |
-                      ["@semantic-release/git"]
+                      ["@semantic-release/commit-analyzer", "@semantic-release/npm" ]
                   dry-run: true
 
     build:

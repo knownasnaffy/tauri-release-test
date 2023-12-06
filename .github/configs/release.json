@@ -1,0 +1,21 @@
+{
+	"plugins": [
+		[
+			"@semantic-release/commit-analyzer",
+			"@semantic-release/release-notes-generator",
+			"@semantic-release/changelog",
+			"@semantic-release/npm",
+			[
+				"@semantic-release/github",
+				{
+					"assets": ["src-tauri/target/release/bundle/**/*"],
+					"draftRelease": true,
+					"releaseNameTemplate": "App v<%= nextRelease.version %>",
+					"releaseBodyTemplate": "<details>\n<summary>Release Notes</summary>\n\n<%= nextRelease.notes %>\n\n</details>"
+				}
+			],
+			"@semantic-release/git"
+		]
+	],
+	"branches": ["main"]
+}
